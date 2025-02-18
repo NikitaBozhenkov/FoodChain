@@ -26,12 +26,12 @@ public class AnimalMove : MonoBehaviour
         return new Vector3(randomPoint.x, 0, randomPoint.y);
     }
 
-    private void OnCollisionStay(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
-            transform.Rotate(Vector3.up, 180);
-            transform.forward = CalculateRandomDirection();
+            var contactPoint = other.contacts[0].normal;
+            transform.forward = Vector3.Reflect(transform.forward, contactPoint);
         }
     }
 }
