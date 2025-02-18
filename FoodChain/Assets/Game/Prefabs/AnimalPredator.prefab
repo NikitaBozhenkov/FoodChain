@@ -254,9 +254,10 @@ GameObject:
   - component: {fileID: 3470197907175300844}
   - component: {fileID: 6215000027446199057}
   - component: {fileID: 7198506203673679209}
+  - component: {fileID: 4652183151836665305}
   m_Layer: 0
-  m_Name: Animal
-  m_TagString: Untagged
+  m_Name: AnimalPredator
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,3 +318,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+--- !u!114 &4652183151836665305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291010419447006145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af828e9f7ab848648ef15e8284ab911c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
