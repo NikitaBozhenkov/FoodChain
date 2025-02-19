@@ -235,7 +235,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1289362939}
     m_Modifications:
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -255,15 +255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -281,11 +281,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalPrey (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+--- !u!4 &324363047 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+  m_PrefabInstance: {fileID: 324363046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &544832964
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +779,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1289362939}
     m_Modifications:
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -790,15 +799,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -816,11 +825,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalPredator
       objectReference: {fileID: 0}
+    - target: {fileID: 4291010419447006145, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+--- !u!4 &917460208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+  m_PrefabInstance: {fileID: 917460207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,13 +1178,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278027043}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1289362937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289362939}
+  - component: {fileID: 1289362938}
+  m_Layer: 0
+  m_Name: Animals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1289362938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289362937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1601b6b5e0d614aacbf2547dfc681265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalPrefabs:
+  - {fileID: 4291010419447006145, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+  - {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+  spawnParent: {fileID: 1289362939}
+  minTickTime: 1
+  maxTickTime: 2
+--- !u!4 &1289362939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289362937}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1603360144}
+  - {fileID: 324363047}
+  - {fileID: 1800665994}
+  - {fileID: 1349581511}
+  - {fileID: 917460208}
+  - {fileID: 1612913583}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1349581510
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1289362939}
     m_Modifications:
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1186,15 +1260,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1212,18 +1286,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalPrey (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+--- !u!4 &1349581511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+  m_PrefabInstance: {fileID: 1349581510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1603360143
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1289362939}
     m_Modifications:
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1243,15 +1326,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1269,18 +1352,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalPrey
       objectReference: {fileID: 0}
+    - target: {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+--- !u!4 &1603360144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+  m_PrefabInstance: {fileID: 1603360143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1612913582
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1289362939}
     m_Modifications:
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1300,15 +1392,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1326,11 +1418,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalPredator (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4291010419447006145, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+--- !u!4 &1612913583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3470197907175300844, guid: 07376338171b94801a1b368c7616e0e0, type: 3}
+  m_PrefabInstance: {fileID: 1612913582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1662653242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1544,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1289362939}
     m_Modifications:
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1463,15 +1564,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1489,11 +1590,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalPrey (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+--- !u!4 &1800665994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3470197907175300844, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+  m_PrefabInstance: {fileID: 1800665993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1990840501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,9 +1716,4 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 844030723}
-  - {fileID: 1603360143}
-  - {fileID: 324363046}
-  - {fileID: 1800665993}
-  - {fileID: 1349581510}
-  - {fileID: 917460207}
-  - {fileID: 1612913582}
+  - {fileID: 1289362939}
