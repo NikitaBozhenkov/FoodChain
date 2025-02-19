@@ -1,16 +1,42 @@
-using System;
+using Game.Scripts.Animals.Interfaces;
 using UnityEngine;
 
-public class AnimalPredator : MonoBehaviour
+namespace Game.Scripts.Animals
 {
-    private void OnCollisionEnter(Collision other)
+    public class AnimalPredator : MonoBehaviour, IPredator
     {
-        if (other.gameObject.CompareTag("Animal"))
+        public int Id { get; set; }
+
+        private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.TryGetComponent(out IPrey prey))
+            if (!other.gameObject.CompareTag("Animal")) return;
+        
+            if (other.gameObject.TryGetComponent(out IEatableAnimal animal) && CanEat(animal))
             {
-                prey.Die();
+                Eat(animal);
             }
+
+            return;
+
+            bool CanEat(IEatableAnimal eatableAnimal)
+            {
+                return eatableAnimal switch
+                {
+                    IPrey => true,
+                    IPredator predator => Id > predator.Id,
+                    _ => false
+                };
+            }
+        }
+
+        public void Eat(IEatableAnimal animal)
+        {
+            animal.GetEaten();
+        }
+
+        public void GetEaten()
+        {
+            Destroy(gameObject);
         }
     }
 }

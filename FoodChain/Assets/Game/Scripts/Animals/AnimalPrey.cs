@@ -1,9 +1,15 @@
+using Game.Scripts.Animals.Interfaces;
 using UnityEngine;
 
-public class AnimalPrey : MonoBehaviour, IPrey
+namespace Game.Scripts.Animals
 {
-    public void Die()
+    public class AnimalPrey : MonoBehaviour, IPrey
     {
-        Destroy(gameObject);
+        public int Id { get; set; }
+
+        public void GetEaten()
+        {
+            Destroy(gameObject);
+        }
     }
 }
