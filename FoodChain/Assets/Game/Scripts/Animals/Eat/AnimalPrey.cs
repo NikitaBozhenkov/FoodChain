@@ -1,12 +1,8 @@
-using UnityEngine;
-
 namespace Game.Scripts.Animals
 {
-    public class AnimalPrey : MonoBehaviour, IPrey
+    public class AnimalPrey : EatableAnimal
     {
-        public int Id { get; set; }
-
-        public void GetEaten()
+        public override void GetEaten()
         {
             Destroy(gameObject);
         }

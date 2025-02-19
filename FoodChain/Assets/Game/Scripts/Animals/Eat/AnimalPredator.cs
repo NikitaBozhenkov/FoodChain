@@ -2,38 +2,36 @@ using UnityEngine;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalPredator : MonoBehaviour, IPredator
+    public class AnimalPredator : EatableAnimal
     {
-        public int Id { get; set; }
-
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Animal")) return;
         
-            if (other.gameObject.TryGetComponent(out IEatableAnimal animal) && CanEat(animal))
+            if (other.gameObject.TryGetComponent(out EatableAnimal animal) && CanEat(animal))
             {
                 Eat(animal);
             }
 
             return;
 
-            bool CanEat(IEatableAnimal eatableAnimal)
+            bool CanEat(EatableAnimal eatableAnimal)
             {
                 return eatableAnimal switch
                 {
-                    IPrey => true,
-                    IPredator predator => Id > predator.Id,
+                    AnimalPrey => true,
+                    AnimalPredator predator => Id > predator.Id,
                     _ => false
                 };
             }
         }
 
-        public void Eat(IEatableAnimal animal)
+        private void Eat(EatableAnimal animal)
         {
             animal.GetEaten();
         }
 
-        public void GetEaten()
+        public override void GetEaten()
         {
             Destroy(gameObject);
         }

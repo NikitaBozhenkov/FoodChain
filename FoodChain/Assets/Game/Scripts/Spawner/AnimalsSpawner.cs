@@ -8,7 +8,7 @@ namespace Game.Scripts.Spawner
 {
     public class AnimalsSpawner : MonoBehaviour
     {
-        [SerializeReference] private List<GameObject> animalPrefabs;
+        [SerializeReference] private List<EatableAnimal> animalPrefabs;
         [SerializeField] private Transform spawnParent;
         [SerializeField] private float minTickTime;
         [SerializeField] private float maxTickTime;
@@ -39,13 +39,7 @@ namespace Game.Scripts.Spawner
         {
             var animalPrefab = animalPrefabs[Random.Range(0, animalPrefabs.Count)];
             var animal = Instantiate(animalPrefab, Vector3.zero, Quaternion.identity, spawnParent);
-        
-            if (animal.TryGetComponent(out IEatableAnimal eatableAnimal))
-            {
-                eatableAnimal.Id = _spawnedAnimalsCount;
-            }
-        
-            ++_spawnedAnimalsCount;
+            animal.Id = _spawnedAnimalsCount++;
         }
     }
 }
