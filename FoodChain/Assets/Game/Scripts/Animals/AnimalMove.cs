@@ -26,14 +26,5 @@ namespace Game.Scripts.Animals
             var randomPoint = Random.insideUnitCircle.normalized;
             return new Vector3(randomPoint.x, 0, randomPoint.y);
         }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
-            {
-                var contactPoint = other.contacts[0].normal;
-                transform.forward = Vector3.Reflect(transform.forward, contactPoint);
-            }
-        }
     }
 }
