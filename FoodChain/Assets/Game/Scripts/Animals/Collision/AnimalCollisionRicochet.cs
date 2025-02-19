@@ -4,8 +4,7 @@ namespace Game.Scripts.Animals
 {
     public class AnimalCollisionRicochet: MonoBehaviour
     {
-        [SerializeField] 
-        private LayerMask _richochetFrom;
+        [SerializeField] private LayerMask _richochetFrom;
         
         private void OnCollisionEnter(Collision other)
         {

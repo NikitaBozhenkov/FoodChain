@@ -1,4 +1,3 @@
-using Game.Scripts.Animals.Interfaces;
 using UnityEngine;
 
 namespace Game.Scripts.Animals

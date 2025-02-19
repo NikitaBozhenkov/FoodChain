@@ -1,4 +1,4 @@
-namespace Game.Scripts.Animals.Interfaces
+namespace Game.Scripts.Animals
 {
     public interface IEatableAnimal
     {

@@ -3,7 +3,7 @@ using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalMove : MonoBehaviour
+    public class AnimalMove : MonoBehaviour, IAnimalMove
     {
         [SerializeField] private float _speed;
 
@@ -25,6 +25,14 @@ namespace Game.Scripts.Animals
         {
             var randomPoint = Random.insideUnitCircle.normalized;
             return new Vector3(randomPoint.x, 0, randomPoint.y);
+        }
+
+        public void StartMove()
+        {
+        }
+
+        public void StopMove()
+        {
         }
     }
 }

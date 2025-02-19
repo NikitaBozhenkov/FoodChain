@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game.Scripts.Animals.Interfaces;
+using Game.Scripts.Animals;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
