@@ -27,7 +27,7 @@ namespace Game.Scripts.Animals
 
         public void StopMove()
         {
-            _moveCancellationTokenSource.Cancel();
+            _moveCancellationTokenSource?.Cancel();
         }
 
         protected virtual async UniTask Move(CancellationToken cancellationToken)

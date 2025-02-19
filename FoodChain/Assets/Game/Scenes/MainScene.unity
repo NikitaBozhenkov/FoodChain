@@ -1076,8 +1076,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalPrefabs:
-  - {fileID: 7084249681538839960, guid: 3e57acadda1854932b202ea14d747776, type: 3}
-  - {fileID: 7084249681538839960, guid: 09d193515cc00477a8dcf8b8d798d973, type: 3}
+  - {fileID: 7055859925854406133, guid: 3e57acadda1854932b202ea14d747776, type: 3}
+  - {fileID: 3733008444928990754, guid: 09d193515cc00477a8dcf8b8d798d973, type: 3}
   spawnParent: {fileID: 1289362939}
   minTickTime: 1
   maxTickTime: 2

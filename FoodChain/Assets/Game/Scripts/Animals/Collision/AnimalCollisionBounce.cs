@@ -1,3 +1,4 @@
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Game.Scripts.Animals
             if (((1 << other.gameObject.layer) & _bounceFrom.value) == 0) return;
 
             Bounce(other);
-            DisableMovement().Forget();
+            DisableMovement(destroyCancellationToken).Forget();
         }
 
         private void Bounce(Collision other)
@@ -33,10 +34,10 @@ namespace Game.Scripts.Animals
             _rigidbody.AddForce(bounceDirection * _bounceForce, ForceMode.Impulse);
         }
 
-        private async UniTaskVoid DisableMovement()
+        private async UniTaskVoid DisableMovement(CancellationToken cancellationToken)
         {
             _animalMove.StopMove();
-            await UniTask.WaitForSeconds(.3f);
+            await UniTask.WaitForSeconds(.3f, cancellationToken: cancellationToken);
             _animalMove.StartMove();
         }
     }
