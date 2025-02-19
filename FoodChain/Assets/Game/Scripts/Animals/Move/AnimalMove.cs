@@ -1,38 +1,38 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalMove : MonoBehaviour, IAnimalMove
+    public abstract class AnimalMove : MonoBehaviour
     {
-        [SerializeField] private float _speed;
+        private CancellationTokenSource _moveCancellationTokenSource;
 
-        private Rigidbody _rigidbody;
-        private Vector2 _moveDirection;
-
-        private void Awake()
+        private void OnEnable()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            transform.forward = CalculateRandomDirection();
+            StartMove();
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            _rigidbody.velocity = transform.forward * _speed;
+            StopMove();
         }
-
-        private Vector3 CalculateRandomDirection()
-        {
-            var randomPoint = Random.insideUnitCircle.normalized;
-            return new Vector3(randomPoint.x, 0, randomPoint.y);
-        }
-
+        
         public void StartMove()
         {
+            _moveCancellationTokenSource?.Cancel();
+            _moveCancellationTokenSource = new CancellationTokenSource();
+            Move(_moveCancellationTokenSource.Token).SuppressCancellationThrow();
         }
 
         public void StopMove()
         {
+            _moveCancellationTokenSource.Cancel();
+        }
+
+        protected virtual async UniTask Move(CancellationToken cancellationToken)
+        {
+            await UniTask.CompletedTask;
         }
     }
 }
