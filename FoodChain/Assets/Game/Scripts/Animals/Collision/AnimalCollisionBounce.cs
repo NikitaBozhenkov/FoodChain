@@ -1,18 +1,29 @@
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Game.Scripts.Animals
 {
-    [RequireComponent(typeof(AnimalMove), typeof(Rigidbody))]
     public class AnimalCollisionBounce : MonoBehaviour
     {
-        [SerializeField] private LayerMask _bounceFrom;
-        [SerializeField] private float _bounceForce;
-
+        private float _bounceForce;
+        private readonly List<string> bounceTags = new();
         private Rigidbody _rigidbody;
         private AnimalMove _animalMove;
 
+        public AnimalCollisionBounce SetBounceForce(float value)
+        {
+            _bounceForce = value;
+            return this;
+        }
+        
+        public AnimalCollisionBounce AddTag(string bounceFrom)
+        {
+            bounceTags.Add(bounceFrom);
+            return this;
+        }
+        
         private void Awake()
         {
             _animalMove = GetComponent<AnimalMove>();
@@ -21,7 +32,7 @@ namespace Game.Scripts.Animals
 
         private void OnCollisionEnter(Collision other)
         {
-            if (((1 << other.gameObject.layer) & _bounceFrom.value) == 0) return;
+            if (!bounceTags.Contains(other.gameObject.tag)) return;
 
             Bounce(other);
             DisableMovement(destroyCancellationToken).Forget();

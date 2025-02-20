@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b84bfd396c447d99a251ee3659637b, type: 3}
   m_Name: AnimalDatabase
   m_EditorClassIdentifier: 
-  Animals:
-  - {fileID: 7055859925854406133, guid: 3e57acadda1854932b202ea14d747776, type: 3}
-  - {fileID: 3733008444928990754, guid: 09d193515cc00477a8dcf8b8d798d973, type: 3}
+  DefaultAnimalPrefab: {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
+  AnimalSettingsList:
+  - {fileID: 11400000, guid: 50366ace015e542df8b8d768c3911966, type: 2}
+  - {fileID: 11400000, guid: b9f346e10982f4c11b14e8e9a415f93f, type: 2}

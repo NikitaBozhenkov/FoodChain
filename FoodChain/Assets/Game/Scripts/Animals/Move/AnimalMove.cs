@@ -6,8 +6,15 @@ namespace Game.Scripts.Animals
 {
     public abstract class AnimalMove : MonoBehaviour
     {
+        protected float Speed;
+        
         private CancellationTokenSource _moveCancellationTokenSource;
 
+        public void SetSpeed(float value)
+        {
+            Speed = value;
+        }
+        
         private void OnEnable()
         {
             StartMove();

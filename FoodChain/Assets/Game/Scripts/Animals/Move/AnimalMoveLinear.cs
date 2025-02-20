@@ -7,7 +7,6 @@ namespace Game.Scripts.Animals
 {
     public class AnimalMoveLinear : AnimalMove 
     {
-        [SerializeField] private float _speed;
 
         private Rigidbody _rigidbody;
         private Vector2 _moveDirection;
@@ -28,7 +27,7 @@ namespace Game.Scripts.Animals
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                SetVelocity(transform.forward * _speed);
+                SetVelocity(transform.forward * Speed);
                 await UniTask.WaitForFixedUpdate();
             }
 
