@@ -1,4 +1,5 @@
 using Game.Scripts.Animals;
+using Game.Scripts.Models;
 using Zenject;
 
 namespace Game.Scripts.Installers
@@ -8,6 +9,7 @@ namespace Game.Scripts.Installers
         public override void InstallBindings()
         {
             Container.Bind<AnimalFactory>().AsSingle();
+            Container.Bind<SessionStats>().AsSingle();
         }
     }
 }

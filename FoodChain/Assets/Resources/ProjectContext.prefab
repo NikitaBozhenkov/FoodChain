@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4659730571962670309}
   - component: {fileID: 7365122850144316187}
   - component: {fileID: 1303292893309972624}
+  - component: {fileID: 1860976022349031417}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1303292893309972624}
+  - {fileID: 1860976022349031417}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -75,3 +77,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animalDatabase: {fileID: 11400000, guid: 16eef28481d3040d49cfd1b15b311eff, type: 2}
+--- !u!114 &1860976022349031417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943044277730133068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f48e3fedddc41d58dd52bcb8ede5a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

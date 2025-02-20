@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game.Scripts.Animals;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Game.Scripts.Spawner
+namespace Game.Scripts.Animals
 {
     public class AnimalsSpawner : MonoBehaviour
     {
@@ -17,11 +16,13 @@ namespace Game.Scripts.Spawner
         private Coroutine _spawnCoroutine;
         private int _spawnedAnimalsCount;
         private AnimalFactory _animalFactory;
+        private SignalBus _signalBus;
         
         [Inject]
-        private void Construct(AnimalFactory animalFactory)
+        private void Construct(AnimalFactory animalFactory, SignalBus signalBus)
         {
             _animalFactory = animalFactory;
+            _signalBus = signalBus;
         }
     
         private void OnEnable()
@@ -47,6 +48,7 @@ namespace Game.Scripts.Spawner
         {
             var animal = _animalFactory.Create();
             animal.Id = _spawnedAnimalsCount++;
+            _signalBus.TryFire<AnimalSpawnedSignal>();
         }
     }
 }
