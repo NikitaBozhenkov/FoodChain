@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -8,7 +7,6 @@ namespace Game.Scripts.Animals
 {
     public class AnimalsSpawner : MonoBehaviour
     {
-        [SerializeReference] private List<EatableAnimal> animalPrefabs;
         [SerializeField] private Transform spawnParent;
         [SerializeField] private float minTickTime;
         [SerializeField] private float maxTickTime;
