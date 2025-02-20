@@ -37,6 +37,13 @@ namespace Game.Scripts.Animals
             _moveCancellationTokenSource?.Cancel();
         }
 
+        public async UniTaskVoid DisableMovement(float duration)
+        {
+            StopMove();
+            await UniTask.WaitForSeconds(duration, cancellationToken: destroyCancellationToken);
+            StartMove();
+        }
+
         protected virtual async UniTask Move(CancellationToken cancellationToken)
         {
             await UniTask.CompletedTask;

@@ -2,16 +2,23 @@ using UnityEngine;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalCollisionRicochet: MonoBehaviour
+    public class AnimalCollisionRicochet: IAnimalCollisionAction
     {
-        [SerializeField] private LayerMask _richochetFrom;
-        
-        private void OnCollisionEnter(Collision other)
+        private LayerMask _ricochetFrom;
+        private Transform _transform;
+
+        public AnimalCollisionRicochet(LayerMask layerMask, Transform transform)
         {
-            if (((1 << other.gameObject.layer) & _richochetFrom.value) == 0) return;
+            _ricochetFrom = layerMask;
+            _transform = transform;
+        }
+
+        public void OnCollision(Collision other)
+        {
+            if (((1 << other.gameObject.layer) & _ricochetFrom.value) == 0) return;
             
             var contactPoint = other.contacts[0].normal;
-            transform.forward = Vector3.Reflect(transform.forward, contactPoint);
+            _transform.forward = Vector3.Reflect(_transform.forward, contactPoint);
         }
     }
 }

@@ -22,23 +22,30 @@ namespace Game.Scripts.Animals
             var animal = _container.InstantiatePrefab(_animalDatabase.DefaultAnimalPrefab);
             animal.name = animalSettings.Name;
             _container.InstantiatePrefab(animalSettings.Model, animal.transform);
+
+            var collision = _container.InstantiateComponent<AnimalCollision>(animal);
+            var ricochetCollision = new AnimalCollisionRicochet(LayersManager.AnimalLayerMask, animal.transform);
+            collision.AddCollision(ricochetCollision);
             
-            _container
-                .InstantiateComponent<AnimalMoveLinear>(animal)
-                .SetSpeed(animalSettings.Speed);
+            var move = _container.InstantiateComponent<AnimalMoveLinear>(animal);
+            move.SetSpeed(animalSettings.Speed);
             
             EatableAnimal eatableAnimal;
             if (animalSettings.FoodChainPosition == FoodChainPosition.Predator)
             {
                 eatableAnimal = _container.InstantiateComponent<AnimalPredator>(animal);
-                _container.InstantiateComponent<AnimalCollisionEat>(animal);
+                var collisionEat = new AnimalCollisionEat((AnimalPredator)eatableAnimal);
+                collision.AddCollision(collisionEat);
             }
             else
             {
                 eatableAnimal = _container.InstantiateComponent<AnimalPrey>(animal);
-                _container.InstantiateComponent<AnimalCollisionBounce>(animal)
-                    .SetBounceForce(7)
-                    .AddTag(TagsManager.Animal);
+                var collisionBounce = new AnimalCollisionBounce(
+                    7, 
+                    new List<string> { TagsManager.Animal },
+                    animal.GetComponent<Rigidbody>(), 
+                    move);
+                collision.AddCollision(collisionBounce);
             }
             
             return eatableAnimal;

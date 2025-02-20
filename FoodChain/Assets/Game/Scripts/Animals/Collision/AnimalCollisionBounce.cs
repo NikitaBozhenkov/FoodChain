@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -5,51 +6,35 @@ using UnityEngine;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalCollisionBounce : MonoBehaviour
+    public class AnimalCollisionBounce : IAnimalCollisionAction
     {
-        private float _bounceForce;
-        private readonly List<string> bounceTags = new();
-        private Rigidbody _rigidbody;
-        private AnimalMove _animalMove;
-
-        public AnimalCollisionBounce SetBounceForce(float value)
-        {
-            _bounceForce = value;
-            return this;
-        }
+        private readonly float _bounceForce;
+        private readonly List<string> _bounceTags;
+        private readonly Rigidbody _rigidbody;
+        private readonly AnimalMove _animalMove;
         
-        public AnimalCollisionBounce AddTag(string bounceFrom)
+        public AnimalCollisionBounce(float bounceForce, List<string> bounceTags, Rigidbody rigidbody,
+            AnimalMove animalMove)
         {
-            bounceTags.Add(bounceFrom);
-            return this;
-        }
-        
-        private void Awake()
-        {
-            _animalMove = GetComponent<AnimalMove>();
-            _rigidbody = GetComponent<Rigidbody>();
+            _bounceForce = bounceForce;
+            _bounceTags = bounceTags;
+            _rigidbody = rigidbody;
+            _animalMove = animalMove;
         }
 
-        private void OnCollisionEnter(Collision other)
+        public void OnCollision(Collision other)
         {
-            if (!bounceTags.Contains(other.gameObject.tag)) return;
+            if (!_bounceTags.Contains(other.gameObject.tag)) return;
 
             Bounce(other);
-            DisableMovement(destroyCancellationToken).Forget();
+            _animalMove.DisableMovement(.3f).Forget();
         }
 
         private void Bounce(Collision other)
         {
-            var bounceDirection = (transform.position - other.transform.position).normalized;
+            var bounceDirection = (_rigidbody.transform.position - other.transform.position).normalized;
 
             _rigidbody.AddForce(bounceDirection * _bounceForce, ForceMode.Impulse);
-        }
-
-        private async UniTaskVoid DisableMovement(CancellationToken cancellationToken)
-        {
-            _animalMove.StopMove();
-            await UniTask.WaitForSeconds(.3f, cancellationToken: cancellationToken);
-            _animalMove.StartMove();
         }
     }
 }

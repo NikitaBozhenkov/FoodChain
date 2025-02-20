@@ -2,23 +2,22 @@ using UnityEngine;
 
 namespace Game.Scripts.Animals
 {
-    [RequireComponent(typeof(AnimalPredator))]
-    public class AnimalCollisionEat: MonoBehaviour
+    public class AnimalCollisionEat : IAnimalCollisionAction
     {
-        private AnimalPredator _animalPredator;
-        
-        private void Awake()
-        {
-            _animalPredator = GetComponent<AnimalPredator>();
-        }
+        private readonly AnimalPredator _predator;
 
-        private void OnCollisionEnter(Collision other)
+        public AnimalCollisionEat(AnimalPredator predator)
+        {
+            _predator = predator;
+        }
+        
+        public void OnCollision(Collision other)
         {
             if (!other.gameObject.CompareTag("Animal")) return;
         
             if (other.gameObject.TryGetComponent(out EatableAnimal animal) && CanEat(animal))
             {
-                _animalPredator.Eat(animal);
+                _predator.Eat(animal);
             }
 
             return;
@@ -28,7 +27,7 @@ namespace Game.Scripts.Animals
                 return eatableAnimal switch
                 {
                     AnimalPrey => true,
-                    AnimalPredator predator => _animalPredator.Id > predator.Id,
+                    AnimalPredator predator => _predator.Id > predator.Id,
                     _ => false
                 };
             }
