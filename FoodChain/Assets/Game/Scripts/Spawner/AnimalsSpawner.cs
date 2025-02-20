@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Scripts.Animals;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Spawner
@@ -15,6 +16,13 @@ namespace Game.Scripts.Spawner
 
         private Coroutine _spawnCoroutine;
         private int _spawnedAnimalsCount;
+        private AnimalFactory _animalFactory;
+        
+        [Inject]
+        private void Construct(AnimalFactory animalFactory)
+        {
+            _animalFactory = animalFactory;
+        }
     
         private void OnEnable()
         {
@@ -37,8 +45,7 @@ namespace Game.Scripts.Spawner
 
         private void SpawnAnimal()
         {
-            var animalPrefab = animalPrefabs[Random.Range(0, animalPrefabs.Count)];
-            var animal = Instantiate(animalPrefab, Vector3.zero, Quaternion.identity, spawnParent);
+            var animal = _animalFactory.Create();
             animal.Id = _spawnedAnimalsCount++;
         }
     }
