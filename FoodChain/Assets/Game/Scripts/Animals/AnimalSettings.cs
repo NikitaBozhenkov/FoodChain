@@ -8,6 +8,10 @@ namespace Game.Scripts.Animals
         public string Name;
         public GameObject Model;
         public FoodChainPosition FoodChainPosition;
+        public AnimalMoveType AnimalMoveType;
         public float Speed;
+
+        public float JumpForce;
+        public float JumpInterval;
     }
 }

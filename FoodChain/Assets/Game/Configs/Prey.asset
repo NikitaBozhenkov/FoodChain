@@ -15,4 +15,7 @@ MonoBehaviour:
   Name: Prey
   Model: {fileID: 1777350452370247550, guid: c944703511bf542c6b90f7ab9433b9f4, type: 3}
   FoodChainPosition: 0
+  AnimalMoveType: 1
   Speed: 5
+  JumpForce: 10
+  JumpInterval: 2

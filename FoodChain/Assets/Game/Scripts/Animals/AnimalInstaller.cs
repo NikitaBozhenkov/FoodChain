@@ -10,17 +10,19 @@ namespace Game.Scripts.Animals
     {
         [Inject] private AnimalSettings _settings;
         [Inject] private AnimalDatabase _animalDatabase;
+        
+        private GameObject _animal;
 
         public override void InstallBindings()
         {
-            var animal = Container.InstantiatePrefab(_animalDatabase.DefaultAnimalPrefab);
-            animal.name = _settings.Name;
-            Container.InstantiatePrefab(_settings.Model, animal.transform);
+            _animal = Container.InstantiatePrefab(_animalDatabase.DefaultAnimalPrefab);
+            _animal.name = _settings.Name;
+            Container.InstantiatePrefab(_settings.Model, _animal.transform);
 
             switch (_settings.FoodChainPosition)
             {
                 case FoodChainPosition.Prey:
-                    Container.Bind<EatableAnimal>().To<AnimalPrey>().FromNewComponentOn(animal).AsSingle().NonLazy();
+                    Container.Bind<EatableAnimal>().To<AnimalPrey>().FromNewComponentOn(_animal).AsSingle().NonLazy();
                     Container
                         .Bind<IAnimalCollisionAction>()
                         .To<AnimalCollisionBounce>()
@@ -30,7 +32,7 @@ namespace Game.Scripts.Animals
                     break;
                 case FoodChainPosition.Predator:
                     Container.Bind(typeof(EatableAnimal), typeof(AnimalPredator)).To<AnimalPredator>()
-                        .FromNewComponentOn(animal).AsSingle()
+                        .FromNewComponentOn(_animal).AsSingle()
                         .NonLazy();
                     Container
                         .Bind<IAnimalCollisionAction>()
@@ -42,21 +44,40 @@ namespace Game.Scripts.Animals
                     throw new ArgumentOutOfRangeException();
             }
 
-            Container.Bind<AnimalMove>().FromNewComponentOn(animal).AsSingle().NonLazy();
-            Container.Bind<IMoveStrategy>()
-                .To<AnimalMoveLinear>()
-                .WithArguments(_settings.Speed)
-                .WhenInjectedInto<AnimalMove>();
-
-            Container.Bind<AnimalCollision>().FromNewComponentOn(animal).AsSingle().NonLazy();
+            BindMovement();
+            
             Container.Bind<IAnimalCollisionAction>()
                 .To<AnimalCollisionRicochet>()
                 .AsSingle()
                 .WithArguments((LayerMask)LayersManager.AnimalLayerMask)
                 .NonLazy();
 
-            Container.Bind<Rigidbody>().FromComponentOn(animal).AsSingle().NonLazy();
-            Container.Bind<Transform>().FromComponentOn(animal).AsSingle().NonLazy();
+            Container.Bind<AnimalCollision>().FromNewComponentOn(_animal).AsSingle().NonLazy();
+
+            Container.Bind<Rigidbody>().FromComponentOn(_animal).AsSingle().NonLazy();
+            Container.Bind<Transform>().FromComponentOn(_animal).AsSingle().NonLazy();
+        }
+
+        private void BindMovement()
+        {
+            Container.Bind<AnimalMove>().FromNewComponentOn(_animal).AsSingle().NonLazy();
+            switch (_settings.AnimalMoveType)
+            {
+                case AnimalMoveType.Linear:
+                    Container.Bind<IMoveStrategy>()
+                        .To<AnimalMoveLinear>()
+                        .WithArguments(_settings.Speed)
+                        .WhenInjectedInto<AnimalMove>();
+                    break;
+                case AnimalMoveType.Jump:
+                    Container.Bind<IMoveStrategy>()
+                        .To<AnimalMoveJump>()
+                        .WithArguments(_settings.JumpForce, _settings.JumpInterval)
+                        .WhenInjectedInto<AnimalMove>();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
