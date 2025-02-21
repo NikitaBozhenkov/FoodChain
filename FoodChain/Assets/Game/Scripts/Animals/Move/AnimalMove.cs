@@ -1,52 +1,42 @@
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Animals
 {
-    public abstract class AnimalMove : MonoBehaviour
+    public class AnimalMove : MonoBehaviour
     {
-        protected float Speed;
-        
-        private CancellationTokenSource _moveCancellationTokenSource;
+        private IMoveStrategy _strategy;
 
-        public void SetSpeed(float value)
+        [Inject]
+        protected void Construct(IMoveStrategy strategy)
         {
-            Speed = value;
-        }
-        
-        private void OnEnable()
-        {
-            StartMove();
+            _strategy = strategy;
+            _strategy.SetDirection(CalculateRandomDirection());
         }
 
-        private void OnDisable()
+        private void Start()
         {
-            StopMove();
-        }
-        
-        public void StartMove()
-        {
-            _moveCancellationTokenSource?.Cancel();
-            _moveCancellationTokenSource = new CancellationTokenSource();
-            Move(_moveCancellationTokenSource.Token).SuppressCancellationThrow();
+            _strategy.StartMove();
         }
 
-        public void StopMove()
+        private void OnDestroy()
         {
-            _moveCancellationTokenSource?.Cancel();
+            _strategy.StopMove();
         }
 
         public async UniTaskVoid DisableMovement(float duration)
         {
-            StopMove();
-            await UniTask.WaitForSeconds(duration, cancellationToken: destroyCancellationToken);
-            StartMove();
+            _strategy.StopMove();
+            if (await UniTask.WaitForSeconds(duration, cancellationToken: destroyCancellationToken)
+                    .SuppressCancellationThrow()) return;
+            _strategy.StartMove();
         }
-
-        protected virtual async UniTask Move(CancellationToken cancellationToken)
+        
+        private Vector3 CalculateRandomDirection()
         {
-            await UniTask.CompletedTask;
+            var randomPoint = Random.insideUnitCircle.normalized;
+            return new Vector3(randomPoint.x, 0, randomPoint.y);
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f990a31aa8e24c038760dfc9e48ba131, type: 3}
   m_Name: Predator
   m_EditorClassIdentifier: 
-  Name: Prey
+  Name: Predator
   Model: {fileID: 1777350452370247550, guid: 739bcaa34208f46bd8779a671a829761, type: 3}
   FoodChainPosition: 1
   Speed: 5

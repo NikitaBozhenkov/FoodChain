@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Animals
 {
@@ -10,11 +11,12 @@ namespace Game.Scripts.Animals
 
     public class AnimalCollision: MonoBehaviour
     {
-        private readonly List<IAnimalCollisionAction> _collisions = new();
+        private List<IAnimalCollisionAction> _collisions = new();
 
-        public void AddCollision(IAnimalCollisionAction action)
+        [Inject]
+        private void Construct(List<IAnimalCollisionAction> collisionActions)
         {
-            _collisions.Add(action);
+            _collisions = new List<IAnimalCollisionAction>(collisionActions);
         }
         
         private void OnCollisionEnter(Collision other)

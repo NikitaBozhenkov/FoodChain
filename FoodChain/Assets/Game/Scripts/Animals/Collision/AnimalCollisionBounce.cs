@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Game.Scripts.Animals
@@ -27,7 +24,7 @@ namespace Game.Scripts.Animals
             if (!_bounceTags.Contains(other.gameObject.tag)) return;
 
             Bounce(other);
-            _animalMove.DisableMovement(.3f).Forget();
+            _animalMove.DisableMovement(.3f);
         }
 
         private void Bounce(Collision other)

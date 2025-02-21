@@ -8,8 +8,11 @@ namespace Game.Scripts.Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<AnimalFactory>().AsSingle();
             Container.Bind<SessionStats>().AsSingle();
+
+            Container.BindFactory<AnimalSettings, EatableAnimal, AnimalFactory>()
+                .FromSubContainerResolve()
+                .ByInstaller<AnimalInstaller>();
         }
     }
 }

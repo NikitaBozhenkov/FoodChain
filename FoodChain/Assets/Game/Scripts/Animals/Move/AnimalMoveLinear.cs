@@ -1,33 +1,57 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Zenject;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalMoveLinear : AnimalMove 
+    public interface IMoveStrategy
     {
+        void SetDirection(Vector3 direction);
+        void StartMove();
+        void StopMove();
+    }
 
+    public class AnimalMoveLinear : IMoveStrategy
+    {
         private Rigidbody _rigidbody;
+        private Transform _transform;
+        private float _speed;
+
+        private CancellationTokenSource _moveCancellationTokenSource;
         private Vector2 _moveDirection;
 
-        private void Awake()
+        [Inject]
+        protected void Construct(Transform transform, Rigidbody rigidbody, float speed)
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            transform.forward = CalculateRandomDirection();
+            _transform = transform;
+            _rigidbody = rigidbody;
+            _speed = speed;
         }
 
-        private Vector3 CalculateRandomDirection()
+        public void SetDirection(Vector3 direction)
         {
-            var randomPoint = Random.insideUnitCircle.normalized;
-            return new Vector3(randomPoint.x, 0, randomPoint.y);
+            _transform.forward = direction;
         }
 
-        protected override async UniTask Move(CancellationToken cancellationToken)
+        public void StartMove()
+        {
+            _moveCancellationTokenSource?.Cancel();
+            _moveCancellationTokenSource = new CancellationTokenSource();
+            Move(_moveCancellationTokenSource.Token).Forget();
+        }
+
+        public void StopMove()
+        {
+            _moveCancellationTokenSource?.Cancel();
+            _moveCancellationTokenSource = null;
+        }
+
+        private async UniTask Move(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                SetVelocity(transform.forward * Speed);
+                SetVelocity(_transform.forward * _speed);
                 await UniTask.WaitForFixedUpdate();
             }
 
