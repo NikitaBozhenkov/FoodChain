@@ -14,15 +14,13 @@ namespace Game.Scripts.Animals
 
     public class AnimalMoveLinear : IMoveStrategy
     {
-        private Rigidbody _rigidbody;
-        private Transform _transform;
-        private float _speed;
+        private readonly Rigidbody _rigidbody;
+        private readonly Transform _transform;
+        private readonly float _speed;
 
         private CancellationTokenSource _moveCancellationTokenSource;
-        private Vector2 _moveDirection;
 
-        [Inject]
-        protected void Construct(Transform transform, Rigidbody rigidbody, float speed)
+        public AnimalMoveLinear(Transform transform, Rigidbody rigidbody, float speed)
         {
             _transform = transform;
             _rigidbody = rigidbody;

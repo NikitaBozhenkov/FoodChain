@@ -4,24 +4,19 @@ using Zenject;
 
 namespace Game.Scripts.Animals
 {
-    public interface IAnimalCollisionAction
-    {
-        void OnCollision(Collision other);
-    }
-
     public class AnimalCollision: MonoBehaviour
     {
-        private List<IAnimalCollisionAction> _collisions = new();
+        private List<IAnimalCollisionAction> _collisionActions = new();
 
         [Inject]
         private void Construct(List<IAnimalCollisionAction> collisionActions)
         {
-            _collisions = new List<IAnimalCollisionAction>(collisionActions);
+            _collisionActions = new List<IAnimalCollisionAction>(collisionActions);
         }
         
         private void OnCollisionEnter(Collision other)
         {
-            foreach (var collision in _collisions)
+            foreach (var collision in _collisionActions)
             {
                 collision.OnCollision(other);
             }

@@ -4,8 +4,8 @@ namespace Game.Scripts.Animals
 {
     public class AnimalCollisionRicochet: IAnimalCollisionAction
     {
-        private LayerMask _ricochetFrom;
-        private Transform _transform;
+        private readonly LayerMask _ricochetFrom;
+        private readonly Transform _transform;
 
         public AnimalCollisionRicochet(LayerMask layerMask, Transform transform)
         {

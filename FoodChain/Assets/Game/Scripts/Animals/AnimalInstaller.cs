@@ -19,43 +19,29 @@ namespace Game.Scripts.Animals
             _animal.name = _settings.Name;
             Container.InstantiatePrefab(_settings.Model, _animal.transform);
 
+            BindFoodChainPosition();
+            BindMovement();
+            BindCollision();
+            
+            Container.Bind<Rigidbody>().FromComponentOn(_animal).AsSingle().NonLazy();
+            Container.Bind<Transform>().FromComponentOn(_animal).AsSingle().NonLazy();
+        }
+
+        private void BindFoodChainPosition()
+        {
             switch (_settings.FoodChainPosition)
             {
                 case FoodChainPosition.Prey:
                     Container.Bind<EatableAnimal>().To<AnimalPrey>().FromNewComponentOn(_animal).AsSingle().NonLazy();
-                    Container
-                        .Bind<IAnimalCollisionAction>()
-                        .To<AnimalCollisionBounce>()
-                        .AsSingle()
-                        .WithArguments(7f, new List<string> { TagsManager.Animal })
-                        .NonLazy();
                     break;
                 case FoodChainPosition.Predator:
                     Container.Bind(typeof(EatableAnimal), typeof(AnimalPredator)).To<AnimalPredator>()
                         .FromNewComponentOn(_animal).AsSingle()
                         .NonLazy();
-                    Container
-                        .Bind<IAnimalCollisionAction>()
-                        .To<AnimalCollisionEat>()
-                        .AsSingle()
-                        .NonLazy();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            BindMovement();
-            
-            Container.Bind<IAnimalCollisionAction>()
-                .To<AnimalCollisionRicochet>()
-                .AsSingle()
-                .WithArguments((LayerMask)LayersManager.AnimalLayerMask)
-                .NonLazy();
-
-            Container.Bind<AnimalCollision>().FromNewComponentOn(_animal).AsSingle().NonLazy();
-
-            Container.Bind<Rigidbody>().FromComponentOn(_animal).AsSingle().NonLazy();
-            Container.Bind<Transform>().FromComponentOn(_animal).AsSingle().NonLazy();
         }
 
         private void BindMovement()
@@ -78,6 +64,38 @@ namespace Game.Scripts.Animals
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void BindCollision()
+        {
+            switch (_settings.FoodChainPosition)
+            {
+                case FoodChainPosition.Prey:
+                    Container
+                        .Bind<IAnimalCollisionAction>()
+                        .To<AnimalCollisionBounce>()
+                        .AsSingle()
+                        .WithArguments(7f, new List<string> { TagsManager.Animal })
+                        .NonLazy();
+                    break;
+                case FoodChainPosition.Predator:
+                    Container
+                        .Bind<IAnimalCollisionAction>()
+                        .To<AnimalCollisionEat>()
+                        .AsSingle()
+                        .NonLazy();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            Container.Bind<IAnimalCollisionAction>()
+                .To<AnimalCollisionRicochet>()
+                .AsSingle()
+                .WithArguments((LayerMask)LayersManager.AnimalLayerMask)
+                .NonLazy();
+            
+            Container.Bind<AnimalCollision>().FromNewComponentOn(_animal).AsSingle().NonLazy();
         }
     }
 }

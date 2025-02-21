@@ -7,14 +7,14 @@ namespace Game.Scripts.Animals
 {
     public class AnimalMoveJump : IMoveStrategy
     {
-        private Rigidbody _rigidbody;
-        private Transform _transform;
-        private float _jumpForce;
-        private float _jumpInterval;
+        private readonly Rigidbody _rigidbody;
+        private readonly Transform _transform;
+        private readonly float _jumpForce;
+        private readonly float _jumpInterval;
+        
         private CancellationTokenSource _moveCancellationTokenSource;
-
-        [Inject]
-        protected void Construct(Transform transform, Rigidbody rigidbody, float jumpForce, float jumpInterval)
+        
+        public AnimalMoveJump(Transform transform, Rigidbody rigidbody, float jumpForce, float jumpInterval)
         {
             _transform = transform;
             _rigidbody = rigidbody;
