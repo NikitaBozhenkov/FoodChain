@@ -6,13 +6,15 @@ namespace Game.Scripts.Installers
 {
     public class MainSceneInstaller: MonoInstaller
     {
+        [Inject] private AnimalDatabase _animalDatabase;
+        
         public override void InstallBindings()
         {
             Container.Bind<SessionStats>().AsSingle();
 
             Container.BindFactory<AnimalSettings, Animal, AnimalFactory>()
                 .FromSubContainerResolve()
-                .ByInstaller<AnimalInstaller>();
+                .ByNewContextPrefab<AnimalInstaller>(_animalDatabase.DefaultAnimalPrefab);
         }
     }
 }

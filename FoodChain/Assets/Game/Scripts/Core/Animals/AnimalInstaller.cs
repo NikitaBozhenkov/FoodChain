@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalInstaller : Installer<AnimalSettings, AnimalInstaller>
+    public class AnimalInstaller : MonoInstaller
     {
         [Inject] private AnimalSettings _settings;
         [Inject] private AnimalDatabase _animalDatabase;
@@ -15,7 +15,7 @@ namespace Game.Scripts.Animals
 
         public override void InstallBindings()
         {
-            _animal = Container.InstantiatePrefab(_animalDatabase.DefaultAnimalPrefab);
+            _animal = gameObject;
             _animal.name = _settings.Name;
             Container.InstantiatePrefab(_settings.Model, _animal.transform);
 
