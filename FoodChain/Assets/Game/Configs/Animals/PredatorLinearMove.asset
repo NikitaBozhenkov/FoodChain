@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f990a31aa8e24c038760dfc9e48ba131, type: 3}
-  m_Name: Prey
+  m_Name: PredatorLinearMove
   m_EditorClassIdentifier: 
-  Name: Prey
-  Model: {fileID: 1777350452370247550, guid: c944703511bf542c6b90f7ab9433b9f4, type: 3}
-  FoodChainPosition: 0
-  AnimalMoveType: 1
+  Name: Predator
+  Model: {fileID: 1777350452370247550, guid: 739bcaa34208f46bd8779a671a829761, type: 3}
+  FoodChainPosition: 1
   Speed: 5
-  JumpForce: 10
-  JumpInterval: 2

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3470197907175300844}
   - component: {fileID: 6215000027446199057}
+  - component: {fileID: 296915390414644381}
+  - component: {fileID: 1650848833438305956}
   m_Layer: 7
   m_Name: AnimalBase
   m_TagString: Animal
@@ -59,3 +61,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &296915390414644381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291010419447006145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1650848833438305956}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
+--- !u!114 &1650848833438305956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291010419447006145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a035bba9f5b415ea0d4ce7ae5473e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
