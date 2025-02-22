@@ -32,10 +32,10 @@ namespace Game.Scripts.Animals
             switch (_settings.FoodChainPosition)
             {
                 case FoodChainPosition.Prey:
-                    Container.Bind<EatableAnimal>().To<AnimalPrey>().FromNewComponentOn(_animal).AsSingle().NonLazy();
+                    Container.Bind<Animal>().To<AnimalPrey>().FromNewComponentOn(_animal).AsSingle().NonLazy();
                     break;
                 case FoodChainPosition.Predator:
-                    Container.Bind(typeof(EatableAnimal), typeof(AnimalPredator)).To<AnimalPredator>()
+                    Container.Bind(typeof(Animal), typeof(AnimalPredator)).To<AnimalPredator>()
                         .FromNewComponentOn(_animal).AsSingle()
                         .NonLazy();
                     break;

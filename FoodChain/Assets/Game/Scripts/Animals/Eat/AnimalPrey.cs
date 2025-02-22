@@ -1,21 +1,9 @@
-using Zenject;
-
 namespace Game.Scripts.Animals
 {
-    public class AnimalPrey : EatableAnimal
+    public class AnimalPrey : Animal
     {
-        private SignalBus _signalBus;
-
-        [Inject]
-        private void Construct(SignalBus signalBus)
+        public override void Interact(Animal animal)
         {
-            _signalBus = signalBus;
-        }
-        
-        public override void GetEaten()
-        {
-            _signalBus.TryFire<AnimalGotEatenSignal>();
-            Destroy(gameObject);
         }
     }
 }

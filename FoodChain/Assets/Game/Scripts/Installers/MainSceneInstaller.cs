@@ -10,7 +10,7 @@ namespace Game.Scripts.Installers
         {
             Container.Bind<SessionStats>().AsSingle();
 
-            Container.BindFactory<AnimalSettings, EatableAnimal, AnimalFactory>()
+            Container.BindFactory<AnimalSettings, Animal, AnimalFactory>()
                 .FromSubContainerResolve()
                 .ByInstaller<AnimalInstaller>();
         }

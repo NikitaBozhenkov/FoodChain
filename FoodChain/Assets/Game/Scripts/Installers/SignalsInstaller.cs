@@ -15,6 +15,7 @@ namespace Game.Scripts.Installers
         {
             Container.DeclareSignal<AnimalGotEatenSignal>().OptionalSubscriber();
             Container.DeclareSignal<AnimalSpawnedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<AnimalAteSignal>().OptionalSubscriber();
         }
     }
 }

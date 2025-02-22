@@ -1,26 +1,23 @@
-using Zenject;
-
 namespace Game.Scripts.Animals
 {
-    public class AnimalPredator : EatableAnimal
+    public class AnimalPredator : Animal
     {
-        private SignalBus _signalBus;
-
-        [Inject]
-        private void Construct(SignalBus signalBus)
+        public override void Interact(Animal animal)
         {
-            _signalBus = signalBus;
+            if (!CanEat(animal)) return;
+            
+            animal.GetEaten();
+            SignalBus.TryFire( new AnimalAteSignal(transform.position));
         }
         
-        public void Eat(EatableAnimal animal)
+        private bool CanEat(Animal animal)
         {
-            animal.GetEaten();
-        }
-
-        public override void GetEaten()
-        {
-            _signalBus.TryFire<AnimalGotEatenSignal>();
-            Destroy(gameObject);
+            return animal switch
+            {
+                AnimalPrey => true,
+                AnimalPredator predator => Id > predator.Id,
+                _ => false
+            };
         }
     }
 }

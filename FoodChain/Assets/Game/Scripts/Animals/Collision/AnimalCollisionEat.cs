@@ -4,32 +4,18 @@ namespace Game.Scripts.Animals
 {
     public class AnimalCollisionEat : IAnimalCollisionAction
     {
-        private readonly AnimalPredator _predator;
+        private readonly Animal _animal;
 
-        public AnimalCollisionEat(AnimalPredator predator)
+        public AnimalCollisionEat(AnimalPredator animal)
         {
-            _predator = predator;
+            _animal = animal;
         }
         
         public void OnCollision(Collision other)
         {
-            if (!other.gameObject.CompareTag("Animal")) return;
-        
-            if (other.gameObject.TryGetComponent(out EatableAnimal animal) && CanEat(animal))
+            if (other.gameObject.TryGetComponent(out Animal animal))
             {
-                _predator.Eat(animal);
-            }
-
-            return;
-
-            bool CanEat(EatableAnimal eatableAnimal)
-            {
-                return eatableAnimal switch
-                {
-                    AnimalPrey => true,
-                    AnimalPredator predator => _predator.Id > predator.Id,
-                    _ => false
-                };
+                _animal.Interact(animal);
             }
         }
     }
