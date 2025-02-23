@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -7,6 +8,8 @@ namespace Game.Scripts.Animals
     {
         public int Id { get; set; }
         protected SignalBus SignalBus;
+        
+        public event Action<Animal> OnEaten;
         
         [Inject]
         private void Construct(SignalBus signalBus)
@@ -19,7 +22,7 @@ namespace Game.Scripts.Animals
         public void GetEaten()
         {
             SignalBus.TryFire<AnimalGotEatenSignal>();
-            Destroy(gameObject);
+            OnEaten?.Invoke(this);
         }
     }
 }
