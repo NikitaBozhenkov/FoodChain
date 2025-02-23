@@ -22,4 +22,3 @@
 ## 🚀 **Technologies Used**
 - 🛠 **Zenject**
 - 🎨 **UniTask**
-- 
