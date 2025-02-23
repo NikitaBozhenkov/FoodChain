@@ -2,6 +2,7 @@
 
 **FoodChain** is a simple **3D simulation game** where animals interact with each other based on a predefined **food chain**. The goal of this test task is to showcase **clean, scalable, and maintainable code architecture** while ensuring easy extensibility for future animal types.
 
+![Gameplay Preview](preview.gif)
 ---
 
 ## 🎯 **Task Description**
