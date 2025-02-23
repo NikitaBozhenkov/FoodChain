@@ -1,3 +1,4 @@
+using System;
 using Game.Scripts.Models;
 using TMPro;
 using UnityEngine;
@@ -18,7 +19,16 @@ namespace Game.Scripts.UI
             _stats = stats;
 
             RefreshStats();
+        }
+
+        private void OnEnable()
+        {
             _stats.StatsUpdated += RefreshStats;
+        }
+        
+        private void OnDisable()
+        {
+            _stats.StatsUpdated -= RefreshStats;
         }
 
         private void RefreshStats()

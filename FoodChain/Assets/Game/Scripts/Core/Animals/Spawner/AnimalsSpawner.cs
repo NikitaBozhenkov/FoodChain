@@ -28,12 +28,12 @@ namespace Game.Scripts.Animals
             _signalBus = signalBus;
         }
     
-        private void OnEnable()
+        public void StartSpawning()
         {
             _spawnCoroutine = StartCoroutine(SpawnAnimalsRoutine());
         }
 
-        private void OnDisable()
+        public void StopSpawning()
         {
             StopCoroutine(_spawnCoroutine);
         }

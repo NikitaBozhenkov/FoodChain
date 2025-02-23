@@ -12,11 +12,11 @@ namespace Game.Scripts.Animals
         protected void Construct(IMoveStrategy strategy)
         {
             _strategy = strategy;
-            _strategy.SetDirection(CalculateRandomDirection());
         }
 
         private void Start()
         {
+            _strategy.SetDirection(CalculateRandomDirection());
             _strategy.StartMove();
         }
 

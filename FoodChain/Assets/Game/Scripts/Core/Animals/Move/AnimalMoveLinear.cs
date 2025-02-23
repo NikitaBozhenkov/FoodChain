@@ -1,17 +1,9 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Scripts.Animals
 {
-    public interface IMoveStrategy
-    {
-        void SetDirection(Vector3 direction);
-        void StartMove();
-        void StopMove();
-    }
-
     public class AnimalMoveLinear : IMoveStrategy
     {
         private readonly Rigidbody _rigidbody;
