@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultAnimalPrefab: {fileID: 4291010419447006145, guid: 99a68aefe52c34bf4b06febcb32c77ba, type: 3}
   AnimalSettingsList:
-  - {fileID: 11400000, guid: 50366ace015e542df8b8d768c3911966, type: 2}
-  - {fileID: 11400000, guid: b9f346e10982f4c11b14e8e9a415f93f, type: 2}
+  - {fileID: 11400000, guid: cf2293fa1e3dc4de3bfe2727132689e9, type: 2}
+  - {fileID: 11400000, guid: 2d4f2df9c1ee547bc8de29810443d18a, type: 2}

@@ -1,6 +1,7 @@
 using System;
 using Game.Scripts.Animals;
 using UnityEditor;
+using UnityEngine;
 
 namespace Game.Scripts.Editor.CustomEditors
 {
@@ -14,6 +15,12 @@ namespace Game.Scripts.Editor.CustomEditors
             var settings = (AnimalSettings)target;
 
             settings.Name = EditorGUILayout.TextField("Animal Name", settings.Name);
+            settings.Model = (GameObject)EditorGUILayout.ObjectField(
+                "Animal Model", 
+                settings.Model, 
+                typeof(GameObject),
+                false);
+            settings.FoodChainPosition = (FoodChainPosition)EditorGUILayout.EnumPopup("Food Chain Position", settings.FoodChainPosition);
             settings.AnimalMoveType = (AnimalMoveType)EditorGUILayout.EnumPopup("Move Type", settings.AnimalMoveType);
 
             switch (settings.AnimalMoveType)
