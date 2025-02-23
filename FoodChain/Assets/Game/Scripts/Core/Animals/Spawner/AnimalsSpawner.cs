@@ -11,7 +11,6 @@ namespace Game.Scripts.Animals
         [SerializeField] private float minTickTime;
         [SerializeField] private float maxTickTime;
 
-        private Coroutine _spawnCoroutine;
         private int _spawnedAnimalsCount;
         private AnimalFactory _animalFactory;
         private SignalBus _signalBus;
@@ -27,18 +26,8 @@ namespace Game.Scripts.Animals
             _animalDatabase = animalDatabase;
             _signalBus = signalBus;
         }
-    
-        public void StartSpawning()
-        {
-            _spawnCoroutine = StartCoroutine(SpawnAnimalsRoutine());
-        }
 
-        public void StopSpawning()
-        {
-            StopCoroutine(_spawnCoroutine);
-        }
-
-        private IEnumerator SpawnAnimalsRoutine()
+        public IEnumerator SpawnAnimalsRoutine()
         {
             while (true)
             {
@@ -49,9 +38,12 @@ namespace Game.Scripts.Animals
 
         private void SpawnAnimal()
         {
-            var animal = _animalFactory.Create(GetRandomAnimalSettings());
+            var animalSettings = GetRandomAnimalSettings();
+            var animal = _animalFactory.Create(animalSettings);
+            animal.transform.SetParent(spawnParent);
+            animal.transform.localPosition = Vector3.zero;
             animal.Id = _spawnedAnimalsCount++;
-            animal.gameObject.name += $"-{animal.Id}";
+            animal.gameObject.name = $"{animalSettings.Name}-{animal.Id}";
             _signalBus.TryFire<AnimalSpawnedSignal>();
             return;
 
