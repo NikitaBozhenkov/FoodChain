@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace Game.Scripts.Animals
 {
-    public class AnimalCollisionEat : IAnimalCollisionAction
+    public class AnimalCollisionInteract : IAnimalCollisionAction
     {
         private readonly Animal _animal;
 
-        public AnimalCollisionEat(AnimalPredator animal)
+        public AnimalCollisionInteract(AnimalPredator animal)
         {
             _animal = animal;
         }
         
-        public void OnCollision(Collision other)
+        public void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent(out Animal animal))
             {

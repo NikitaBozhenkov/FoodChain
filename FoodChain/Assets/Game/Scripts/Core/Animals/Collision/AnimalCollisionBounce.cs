@@ -19,12 +19,12 @@ namespace Game.Scripts.Animals
             _animalMove = animalMove;
         }
 
-        public void OnCollision(Collision other)
+        public void OnCollisionEnter(Collision other)
         {
             if (!_bounceTags.Contains(other.gameObject.tag)) return;
 
             Bounce(other);
-            _animalMove.DisableMovement(.3f);
+            _animalMove.DisableMovement(.3f).Forget();
         }
 
         private void Bounce(Collision other)

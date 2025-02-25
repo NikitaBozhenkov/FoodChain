@@ -15,7 +15,7 @@ namespace Game.Scripts.Animals
             _moveDirection = moveDirection;
         }
 
-        public void OnCollision(Collision other)
+        public void OnCollisionEnter(Collision other)
         {
             if (((1 << other.gameObject.layer) & _ricochetFrom.value) == 0) return;
             

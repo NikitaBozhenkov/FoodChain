@@ -82,7 +82,7 @@ namespace Game.Scripts.Animals
                 case FoodChainPosition.Predator:
                     Container
                         .Bind<IAnimalCollisionAction>()
-                        .To<AnimalCollisionEat>()
+                        .To<AnimalCollisionInteract>()
                         .AsSingle()
                         .NonLazy();
                     break;

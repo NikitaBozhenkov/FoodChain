@@ -18,7 +18,7 @@ namespace Game.Scripts.Animals
         {
             foreach (var collision in _collisionActions)
             {
-                collision.OnCollision(other);
+                collision.OnCollisionEnter(other);
             }
         }
     }

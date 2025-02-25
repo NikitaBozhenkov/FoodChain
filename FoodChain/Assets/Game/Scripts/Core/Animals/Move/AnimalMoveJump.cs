@@ -7,12 +7,12 @@ namespace Game.Scripts.Animals
     public class AnimalMoveJump : IMoveStrategy
     {
         private readonly Rigidbody _rigidbody;
+        private readonly AnimalMoveDirection _moveDirection;
 
         private float _jumpForce;
         private float _jumpInterval;
-        
+
         private CancellationTokenSource _moveCancellationTokenSource;
-        private readonly AnimalMoveDirection _moveDirection;
 
         public AnimalMoveJump(Rigidbody rigidbody, AnimalMoveDirection moveDirection)
         {

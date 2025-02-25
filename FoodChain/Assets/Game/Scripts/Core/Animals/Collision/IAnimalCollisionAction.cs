@@ -4,6 +4,6 @@ namespace Game.Scripts.Animals
 {
     public interface IAnimalCollisionAction
     {
-        void OnCollision(Collision other);
+        void OnCollisionEnter(Collision other);
     }
 }
