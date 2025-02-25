@@ -8,15 +8,20 @@ namespace Game.Scripts.Animals
     {
         private readonly Rigidbody _rigidbody;
         private readonly Transform _transform;
-        private readonly float _speed;
-
+        
+        private float _speed;
+        
         private CancellationTokenSource _moveCancellationTokenSource;
 
-        public AnimalMoveLinear(Transform transform, Rigidbody rigidbody, float speed)
+        public AnimalMoveLinear(Transform transform, Rigidbody rigidbody)
         {
             _transform = transform;
             _rigidbody = rigidbody;
-            _speed = speed;
+        }
+
+        public void ApplySettings(AnimalSettings animalSettings)
+        {
+            _speed = animalSettings.Speed;
         }
 
         public void SetDirection(Vector3 direction)

@@ -1,25 +1,29 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Scripts.Animals
 {
     public class AnimalMoveJump : IMoveStrategy
     {
-        private readonly Rigidbody _rigidbody;
         private readonly Transform _transform;
-        private readonly float _jumpForce;
-        private readonly float _jumpInterval;
+        private readonly Rigidbody _rigidbody;
+
+        private float _jumpForce;
+        private float _jumpInterval;
         
         private CancellationTokenSource _moveCancellationTokenSource;
         
-        public AnimalMoveJump(Transform transform, Rigidbody rigidbody, float jumpForce, float jumpInterval)
+        public AnimalMoveJump(Transform transform, Rigidbody rigidbody)
         {
             _transform = transform;
             _rigidbody = rigidbody;
-            _jumpForce = jumpForce;
-            _jumpInterval = jumpInterval;
+        }
+
+        public void ApplySettings(AnimalSettings animalSettings)
+        {
+            _jumpForce = animalSettings.JumpForce;
+            _jumpInterval = animalSettings.JumpInterval;
         }
 
         public void SetDirection(Vector3 direction)

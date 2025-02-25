@@ -15,6 +15,8 @@ namespace Game.Scripts.Animals
 
         public override void InstallBindings()
         {
+            Container.BindInstance(_settings).AsSingle().NonLazy();
+            
             _animal = gameObject;
             _animal.name = _settings.Name;
             Container.InstantiatePrefab(_settings.Model, _animal.transform);
@@ -46,19 +48,17 @@ namespace Game.Scripts.Animals
 
         private void BindMovement()
         {
-            Container.Bind<AnimalMove>().FromNewComponentOn(_animal).AsSingle().NonLazy();
+            Container.Bind<AnimalMove>().FromComponentOn(_animal).AsSingle().NonLazy();
             switch (_settings.AnimalMoveType)
             {
                 case AnimalMoveType.Linear:
                     Container.Bind<IMoveStrategy>()
                         .To<AnimalMoveLinear>()
-                        .WithArguments(_settings.Speed)
                         .WhenInjectedInto<AnimalMove>();
                     break;
                 case AnimalMoveType.Jump:
                     Container.Bind<IMoveStrategy>()
                         .To<AnimalMoveJump>()
-                        .WithArguments(_settings.JumpForce, _settings.JumpInterval)
                         .WhenInjectedInto<AnimalMove>();
                     break;
                 default:

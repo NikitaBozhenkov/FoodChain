@@ -7,15 +7,18 @@ namespace Game.Scripts.Animals
     public class AnimalMove : MonoBehaviour
     {
         private IMoveStrategy _strategy;
+        private AnimalSettings _settings;
 
         [Inject]
-        protected void Construct(IMoveStrategy strategy)
+        protected void Construct(IMoveStrategy strategy, AnimalSettings settings)
         {
             _strategy = strategy;
+            _settings = settings;
         }
 
         private void Start()
         {
+            _strategy.ApplySettings(_settings);
             _strategy.SetDirection(CalculateRandomDirection());
             _strategy.StartMove();
         }
