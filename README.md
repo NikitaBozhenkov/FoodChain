@@ -21,5 +21,7 @@
 ✔️ **Object Pooling**
 
 ## 🚀 **Technologies Used**
-- 🛠 **Zenject**
-- 🎨 **UniTask**
+- **Zenject**
+- **UniTask**
+- **DoTween**
+- **UniRx (R3)**
