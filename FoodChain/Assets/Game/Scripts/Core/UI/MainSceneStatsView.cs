@@ -1,5 +1,6 @@
 using System;
 using Game.Scripts.Models;
+using R3;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -17,24 +18,22 @@ namespace Game.Scripts.UI
         private void Construct(SessionStats stats)
         {
             _stats = stats;
-
-            RefreshStats();
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            _stats.StatsUpdated += RefreshStats;
-        }
-        
-        private void OnDisable()
-        {
-            _stats.StatsUpdated -= RefreshStats;
+            _stats.AnimalsAlive.Subscribe(UpdateAnimalsAlive);
+            _stats.AnimalsEaten.Subscribe(UpdateAnimalsEaten);
         }
 
-        private void RefreshStats()
+        private void UpdateAnimalsAlive(int newValue)
         {
-            _animalsEatenLabel.text = $"Animals eaten: {_stats.AnimalsEaten.ToString()}";
-            _animalsAliveLabel.text = $"Animals alive: {_stats.AnimalsAlive.ToString()}";;
+            _animalsAliveLabel.text = $"Animals alive: {newValue.ToString()}";;
+        }
+
+        private void UpdateAnimalsEaten(int newValue)
+        {
+            _animalsEatenLabel.text = $"Animals eaten: {newValue.ToString()}";
         }
     }
 }

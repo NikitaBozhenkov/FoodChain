@@ -10,7 +10,7 @@ namespace Game.Scripts.Installers
         
         public override void InstallBindings()
         {
-            Container.Bind<SessionStats>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SessionStats>().AsSingle();
 
             Container.BindFactory<AnimalSettings, Animal, AnimalFactory>()
                 .FromSubContainerResolve()
