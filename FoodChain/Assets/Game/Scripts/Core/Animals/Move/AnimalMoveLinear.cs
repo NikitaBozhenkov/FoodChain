@@ -7,26 +7,21 @@ namespace Game.Scripts.Animals
     public class AnimalMoveLinear : IMoveStrategy
     {
         private readonly Rigidbody _rigidbody;
-        private readonly Transform _transform;
-        
+        private readonly AnimalMoveDirection _moveDirection;
+
         private float _speed;
-        
+
         private CancellationTokenSource _moveCancellationTokenSource;
 
-        public AnimalMoveLinear(Transform transform, Rigidbody rigidbody)
+        public AnimalMoveLinear(Rigidbody rigidbody, AnimalMoveDirection moveDirection)
         {
-            _transform = transform;
             _rigidbody = rigidbody;
+            _moveDirection = moveDirection;
         }
 
         public void ApplySettings(AnimalSettings animalSettings)
         {
             _speed = animalSettings.Speed;
-        }
-
-        public void SetDirection(Vector3 direction)
-        {
-            _transform.forward = direction;
         }
 
         public void StartMove()
@@ -46,7 +41,7 @@ namespace Game.Scripts.Animals
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                SetVelocity(_transform.forward * _speed);
+                SetVelocity(_moveDirection.GlobalDirection * _speed);
                 await UniTask.WaitForFixedUpdate();
             }
 

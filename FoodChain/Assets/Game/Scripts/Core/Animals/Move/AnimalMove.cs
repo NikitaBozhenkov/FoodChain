@@ -19,7 +19,7 @@ namespace Game.Scripts.Animals
         private void Start()
         {
             _strategy.ApplySettings(_settings);
-            _strategy.SetDirection(CalculateRandomDirection());
+            transform.forward = CalculateRandomDirection();
             _strategy.StartMove();
         }
 

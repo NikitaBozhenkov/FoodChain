@@ -22,6 +22,7 @@ namespace Game.Scripts.Editor.CustomEditors
                 false);
             settings.FoodChainPosition = (FoodChainPosition)EditorGUILayout.EnumPopup("Food Chain Position", settings.FoodChainPosition);
             settings.AnimalMoveType = (AnimalMoveType)EditorGUILayout.EnumPopup("Move Type", settings.AnimalMoveType);
+            settings.MoveDirection = EditorGUILayout.Vector2Field("Move Direction", settings.MoveDirection);
 
             switch (settings.AnimalMoveType)
             {

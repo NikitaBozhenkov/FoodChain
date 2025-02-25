@@ -48,6 +48,7 @@ namespace Game.Scripts.Animals
 
         private void BindMovement()
         {
+            Container.Bind<AnimalMoveDirection>().AsSingle().NonLazy();
             Container.Bind<AnimalMove>().FromComponentOn(_animal).AsSingle().NonLazy();
             switch (_settings.AnimalMoveType)
             {
