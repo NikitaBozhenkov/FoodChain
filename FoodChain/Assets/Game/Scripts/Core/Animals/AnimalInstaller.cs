@@ -95,7 +95,7 @@ namespace Game.Scripts.Animals
                 .WithArguments((LayerMask)LayersManager.AnimalLayerMask)
                 .NonLazy();
             
-            Container.Bind<AnimalCollision>().FromNewComponentOn(_animal).AsSingle().NonLazy();
+            Container.Bind<AnimalCollision>().FromComponentOn(_animal).AsSingle().NonLazy();
         }
     }
 }
