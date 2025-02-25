@@ -16,3 +16,4 @@ MonoBehaviour:
   AnimalSettingsList:
   - {fileID: 11400000, guid: cf2293fa1e3dc4de3bfe2727132689e9, type: 2}
   - {fileID: 11400000, guid: 2d4f2df9c1ee547bc8de29810443d18a, type: 2}
+  - {fileID: 11400000, guid: a3c7c566d45f5482cb9c359cf3a21e97, type: 2}
